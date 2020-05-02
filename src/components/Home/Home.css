@@ -1,0 +1,12 @@
+.home-block {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+}
+.item-content-catalog {
+    width: 350px;
+    height: 300px;
+    background-color: #dfe4ea;
+    border-radius: 50px;
+    margin: 10px;
+}
