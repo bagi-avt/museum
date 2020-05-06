@@ -1,8 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import Signin from "./Signin/Signin";
-import Signup from "./Signup/Signup";
+import Signin from "./Signin"
+import Signup from "./Signup"
 
 import "./Auth.css";
 
