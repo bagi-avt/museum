@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import WrappedMap from "./WrappedMap/WrappedMap";
-import "./Maps.css";
+
 const tempApi = "AIzaSyDhjVz1DiOqPw4bkdi68v4_WZWl6vOt45o";
 const styleWrappedMap = <div style={{ height: "100%" }} />;
-const Maps = ({ newListExhibits, dispatch }) => {
+const Maps = ({ newListExhibits, filterExhibit }) => {
     return (
         <div className="maps-block">
             <WrappedMap
@@ -14,13 +14,13 @@ const Maps = ({ newListExhibits, dispatch }) => {
                 containerElement={styleWrappedMap}
                 mapElement={styleWrappedMap}
                 newListExhibits={newListExhibits}
-                dispatch={dispatch}
+                filterExhibit={filterExhibit}
             />
         </div>
     );
 };
 Maps.propTypes = {
     newListExhibits: PropTypes.array,
-    dispatch: PropTypes.func,
+    filterExhibit: PropTypes.func,
 };
 export default Maps;

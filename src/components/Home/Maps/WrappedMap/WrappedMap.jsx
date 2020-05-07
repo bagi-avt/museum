@@ -7,7 +7,7 @@ import {
     GoogleMap,
     InfoWindow,
 } from "react-google-maps";
-import { filterExhibitActionCreater } from "./../../../../../redux/list-exhibits-reducer";
+//import { filterExhibitActionCreater } from "./../../../../../redux/list-exhibits-reducer";
 
 import mapStyles from "./mapStyles";
 
@@ -17,13 +17,12 @@ xhr.send();
 let ref;
 
 const WrappedMap = withScriptjs(
-    withGoogleMap(({ newListExhibits, dispatch }) => {
+    withGoogleMap(({ newListExhibits, filterExhibit }) => {
         const [selectedMarker, setSelectedMarker] = useState(null);
-        const getBounds = (e) => {
-            dispatch(filterExhibitActionCreater(ref.getBounds()));
-            //filterExhibit(ref.getBounds());
+        const getBounds = () => {
+            filterExhibit(ref.getBounds());
+            console.log(newListExhibits);
         };
-        console.log(newListExhibits);
         return (
             <GoogleMap
                 ref={(mapRef) => (ref = mapRef)}
@@ -70,6 +69,6 @@ const WrappedMap = withScriptjs(
 
 WrappedMap.propTypes = {
     newListExhibits: PropTypes.array,
-    dispatch: PropTypes.func,
+    filterExhibit: PropTypes.func,
 };
 export default WrappedMap;

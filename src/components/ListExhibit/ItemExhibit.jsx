@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ItemExhibit = ({ id, name }) => {
     const urlLink = "/exhibit/" + id;
     return (
-        <div>
+        <div className='item-exhibit'>
             <Link to={urlLink}>{name}</Link>
         </div>
     );

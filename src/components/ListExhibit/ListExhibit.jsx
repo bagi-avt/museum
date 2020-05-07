@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ItemExhibit from "./ItemExhibit";
+import "./ListExhibit.css";
 
 const ListExhibit = ({ newListExhibits }) => {
-    
     return (
-        <div>
+        <div className="list-exhibits">
             {newListExhibits.map((item, i) => (
                 <ItemExhibit
                     key={i}
