@@ -1,6 +1,6 @@
-import Header from "./../components/Header/Header";
+import Header from "../components/Header/Header";
 import { connect } from "react-redux";
-import {inputSearchValueActionCreater} from './../redux/list-exhibits-reducer'
+import { inputSearchValueActionCreater } from "../redux/list-exhibits-reducer";
 const mapStateToProps = (state) => {
     return {
         city: state.profilePage.city,

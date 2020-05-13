@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import ListExhibit from "../components/ListExhibit/ListExhibit";
 
 let mapStateToProps = (state) => {
-    return { newListExhibits: state.exhibitsPage.newListExhibits };
+    return { filtredExhibits: state.exhibitsPage.filtredExhibits };
 };
 let mapDispatchToProps = (dispatch) => {
     return {};

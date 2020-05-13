@@ -3,7 +3,7 @@ import { filterExhibitActionCreater } from "../redux/list-exhibits-reducer";
 import Maps from "../components/Home/Maps/Maps";
 
 let mapStateToProps = (state) => {
-    return { newListExhibits: state.exhibitsPage.newListExhibits };
+    return { filtredExhibits: state.exhibitsPage.filtredExhibits };
 };
 let mapDispatchToProps = (dispatch) => {
     return {

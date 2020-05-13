@@ -17,4 +17,6 @@
 .maps-block {
     height: 60vh;
     margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
 }

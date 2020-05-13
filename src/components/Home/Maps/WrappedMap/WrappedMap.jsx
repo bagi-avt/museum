@@ -7,21 +7,19 @@ import {
     GoogleMap,
     InfoWindow,
 } from "react-google-maps";
-//import { filterExhibitActionCreater } from "./../../../../../redux/list-exhibits-reducer";
 
 import mapStyles from "./mapStyles";
 
 const xhr = new XMLHttpRequest();
 xhr.open("POST", "http://api.sypexgeo.net/json/");
 xhr.send();
-let ref;
 
 const WrappedMap = withScriptjs(
-    withGoogleMap(({ newListExhibits, filterExhibit }) => {
+    withGoogleMap(({ filtredExhibits, filterExhibit }) => {
         const [selectedMarker, setSelectedMarker] = useState(null);
+        let ref;
         const getBounds = () => {
             filterExhibit(ref.getBounds());
-            console.log(newListExhibits);
         };
         return (
             <GoogleMap
@@ -34,7 +32,7 @@ const WrappedMap = withScriptjs(
                 onBoundsChanged={getBounds}
                 defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}
             >
-                {newListExhibits.map((item, i) => (
+                {filtredExhibits.map((item, i) => (
                     <Marker
                         key={i}
                         position={{
@@ -68,7 +66,7 @@ const WrappedMap = withScriptjs(
 );
 
 WrappedMap.propTypes = {
-    newListExhibits: PropTypes.array,
+    filtredExhibits: PropTypes.array,
     filterExhibit: PropTypes.func,
 };
 export default WrappedMap;

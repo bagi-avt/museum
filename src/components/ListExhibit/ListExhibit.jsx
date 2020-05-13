@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import ItemExhibit from "./ItemExhibit";
 import "./ListExhibit.css";
 
-const ListExhibit = ({ newListExhibits }) => {
+const ListExhibit = ({ filtredExhibits }) => {
     return (
         <div className="list-exhibits">
-            {newListExhibits.map((item, i) => (
+            {filtredExhibits.map((item, i) => (
                 <ItemExhibit
                     key={i}
                     id={item.properties.exhibit_id}
@@ -17,6 +17,6 @@ const ListExhibit = ({ newListExhibits }) => {
     );
 };
 ListExhibit.propTypes = {
-    newListExhibits: PropTypes.array,
+    filtredExhibits: PropTypes.array,
 };
 export default ListExhibit;

@@ -1,6 +1,3 @@
-import * as types from "./types";
-
-let initialState = {
     listCategories: [
         { id: 1, text: "item 1" },
         { id: 2, text: "item 2" },
@@ -17,6 +14,7 @@ let initialState = {
                 exhibit_id: 1,
                 categorie: "1",
                 name: "Копье",
+                category: "item 1",
                 short_description:
                     "Дорогие друзья, новая модель организационной д",
                 description:
@@ -35,6 +33,7 @@ let initialState = {
                 exhibit_id: 2,
                 categorie: "2",
                 name: "Плащ",
+                category: "item 2",
                 short_description: "Задача организации, в особенности же с",
                 description:
                     "Задача организации, в особенности же сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы масштабного изменения ряда параметров. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает актуальность дальнейших направлений развитая системы массового участия. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий. Повседневная практика показыв",
@@ -50,6 +49,7 @@ let initialState = {
                 exhibit_id: 3,
                 categorie: "3",
                 name: "Плащ",
+                category: "item 2",
                 short_description: "Задача организации, в особенности же с",
                 description:
                     "Задача организации, в особенности же сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы масштабного изменения ряда параметров. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает актуальность дальнейших направлений развитая системы массового участия. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий. Повседневная практика показыв",
@@ -65,6 +65,7 @@ let initialState = {
                 exhibit_id: 4,
                 categorie: "1",
                 name: "Копье",
+                category: "item 1",
                 short_description:
                     "Дорогие друзья, новая модель организационной д",
                 description:
@@ -83,6 +84,7 @@ let initialState = {
                 exhibit_id: 5,
                 categorie: "2",
                 name: "Плащ",
+                category: "item 2",
                 short_description: "Задача организации, в особенности же с",
                 description:
                     "Задача организации, в особенности же сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы масштабного изменения ряда параметров. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает актуальность дальнейших направлений развитая системы массового участия. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий. Повседневная практика показыв",
@@ -98,6 +100,7 @@ let initialState = {
                 exhibit_id: 6,
                 categorie: "3",
                 name: "Плащ",
+                category: "item 2",
                 short_description: "Задача организации, в особенности же с",
                 description:
                     "Задача организации, в особенности же сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы масштабного изменения ряда параметров. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает актуальность дальнейших направлений развитая системы массового участия. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий. Повседневная практика показыв",
@@ -113,6 +116,7 @@ let initialState = {
                 exhibit_id: 7,
                 categorie: "1",
                 name: "Копье",
+                category: "item 1",
                 short_description:
                     "Дорогие друзья, новая модель организационной д",
                 description:
@@ -131,6 +135,7 @@ let initialState = {
                 exhibit_id: 8,
                 categorie: "2",
                 name: "Плащ",
+                category: "item 2",
                 short_description: "Задача организации, в особенности же с",
                 description:
                     "Задача организации, в особенности же сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы масштабного изменения ряда параметров. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает актуальность дальнейших направлений развитая системы массового участия. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий. Повседневная практика показыв",
@@ -146,6 +151,7 @@ let initialState = {
                 exhibit_id: 9,
                 categorie: "3",
                 name: "Плащ",
+                category: "item 2",
                 short_description: "Задача организации, в особенности же с",
                 description:
                     "Задача организации, в особенности же сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы масштабного изменения ряда параметров. Разнообразный и богатый опыт новая модель организационной деятельности обеспечивает актуальность дальнейших направлений развитая системы массового участия. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий. Повседневная практика показыв",
@@ -156,78 +162,3 @@ let initialState = {
             },
         },
     ],
-    filtredExhibits: [],
-    seacrh: "",
-    postionCategory: "",
-    bounds: {},
-};
-
-const listExhibitsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case types.FILTER_EXHIBITS_FOR_MAPS:
-            return {
-                ...state,
-                filtredExhibits: state.listExhibits.filter(
-                    (item) =>
-                        item.geometry.coordinates[0] > action.bounds.Ya.i &&
-                        item.geometry.coordinates[0] < action.bounds.Ya.j &&
-                        item.geometry.coordinates[1] > action.bounds.Ua.i &&
-                        item.geometry.coordinates[1] < action.bounds.Ua.j &&
-                        (state.postionCategory !== ""
-                            ? item.properties.categorie ===
-                              state.postionCategory
-                            : true)
-                ),
-                bounds: action.bounds,
-            };
-        case types.CHANGE_CATEGORY:
-            return {
-                ...state,
-                postionCategory:
-                    state.postionCategory === action.text ? "" : action.text,
-                filtredExhibits: state.listExhibits.filter(
-                    (item) =>
-                        item.geometry.coordinates[0] > state.bounds.Ya.i &&
-                        item.geometry.coordinates[0] < state.bounds.Ya.j &&
-                        item.geometry.coordinates[1] > state.bounds.Ua.i &&
-                        item.geometry.coordinates[1] < state.bounds.Ua.j &&
-                        (action.text === ""
-                            ? true
-                            : item.properties.categorie === action.text)
-                ),
-            };
-        case types.INPUT_SEARCH_VALUE:
-            console.log(action.text);
-            return {
-                ...state,
-                seacrh: action.text,
-                filtredExhibits: state.listExhibits.filter(
-                    (item) =>
-                        item.properties.name
-                            .toLocaleLowerCase()
-                            .includes(action.text.toLocaleLowerCase()) ||
-                        item.properties.description
-                            .toLocaleLowerCase()
-                            .includes(action.text.toLocaleLowerCase())
-                ),
-            };
-
-        default:
-            return state;
-    }
-};
-
-export const filterExhibitActionCreater = (bounds) => ({
-    type: types.FILTER_EXHIBITS_FOR_MAPS,
-    bounds,
-});
-export const categoryChangeActionCreater = (text) => ({
-    type: types.CHANGE_CATEGORY,
-    text,
-});
-export const inputSearchValueActionCreater = (text) => ({
-    type: types.INPUT_SEARCH_VALUE,
-    text,
-});
-
-export default listExhibitsReducer;
