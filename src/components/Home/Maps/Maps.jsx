@@ -5,7 +5,7 @@ import WrappedMap from "./WrappedMap/WrappedMap";
 
 const tempApi = "AIzaSyDhjVz1DiOqPw4bkdi68v4_WZWl6vOt45o";
 const styleWrappedMap = <div style={{ height: "100%" }} />;
-const Maps = ({ filtredExhibits, filterExhibit }) => {
+const Maps = ({ filtredExhibits, filterExhibit, defaultCenter }) => {
     return (
         <div className="maps-block">
             <WrappedMap
@@ -15,6 +15,7 @@ const Maps = ({ filtredExhibits, filterExhibit }) => {
                 mapElement={styleWrappedMap}
                 filtredExhibits={filtredExhibits}
                 filterExhibit={filterExhibit}
+                defaultCenter={defaultCenter}
             />
         </div>
     );
@@ -22,5 +23,6 @@ const Maps = ({ filtredExhibits, filterExhibit }) => {
 Maps.propTypes = {
     filtredExhibits: PropTypes.array,
     filterExhibit: PropTypes.func,
+    defaultCenter: PropTypes.object,
 };
 export default Maps;

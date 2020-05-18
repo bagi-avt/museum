@@ -70,6 +70,12 @@ class Signin extends Component {
                         >
                             ВОЙТИ В АККАУНТ
                         </Button>
+                        <a
+                            href="/api/auth/google"
+                            className="login-form-button-google"
+                        >
+                            Google+
+                        </a>
                     </Form.Item>
                     <Form.Item>
                         <Link className="auth__register-link" to="/register">

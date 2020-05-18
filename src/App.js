@@ -24,7 +24,12 @@ function App() {
                     <Route path="/home" render={() => <HomeContainer />} />
                     <Route path="/profile" render={() => <Profile />} />
                     <Route path="/search" render={() => <Search />} />
-                    <Route path="/exhibit" component={Exhibit} />
+                    <Route
+                        path="/exhibit"
+                        component={() => (
+                            <Exhibit  />
+                        )}
+                    />
                 </Container>
             </Router>
         </BrowserRouter>

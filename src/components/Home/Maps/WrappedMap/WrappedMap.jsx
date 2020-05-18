@@ -10,24 +10,21 @@ import {
 
 import mapStyles from "./mapStyles";
 
-const xhr = new XMLHttpRequest();
-xhr.open("POST", "http://api.sypexgeo.net/json/");
-xhr.send();
-
 const WrappedMap = withScriptjs(
-    withGoogleMap(({ filtredExhibits, filterExhibit }) => {
+    withGoogleMap(({ filtredExhibits, filterExhibit, defaultCenter }) => {
         const [selectedMarker, setSelectedMarker] = useState(null);
-        let ref;
+        const [ref, setRef] = useState(null);
+
         const getBounds = () => {
             filterExhibit(ref.getBounds());
         };
         return (
             <GoogleMap
-                ref={(mapRef) => (ref = mapRef)}
+                ref={(mapRef) => setRef(mapRef)}
                 defaultZoom={10}
                 defaultCenter={{
-                    lat: JSON.parse(xhr.response).city.lat,
-                    lng: JSON.parse(xhr.response).city.lon,
+                    lat: defaultCenter.lat,
+                    lng: defaultCenter.lon,
                 }}
                 onBoundsChanged={getBounds}
                 defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}

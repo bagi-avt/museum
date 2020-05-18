@@ -1,8 +1,10 @@
+import * as axios from "axios";
+
 let initialState = {
     username: "Bagi",
     id_user: "12142412",
     city: "Новосибирск",
-    urtlAvatar: "",
+    urlAvatar: "",
     bookmarks: [
         {
             id_exhibit: "123",
@@ -38,7 +40,20 @@ let initialState = {
         { id_exhibit: "126", commit: "blablabla" },
     ],
 };
+function test() {
+    axios({
+        url: "/api/profile",
+        headers: { "Content-Type": "application/json" },
+    }).then((response) => {
+        initialState.username = response.data.username;
+        initialState.urlAvatar = response.data.urlPhoto;
 
+    });
+    axios.get("http://api.sypexgeo.net/json/").then((response) => {
+        initialState.city = response.data.city.name_ru;
+    });
+}
+test();
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         default:

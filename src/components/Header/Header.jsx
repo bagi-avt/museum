@@ -39,9 +39,9 @@ const Header = ({ city, username, search, searchExhibit }) => {
                         <AccountCircle color="primary" />
                         <Link to="/profile">{username}</Link>
                         <div></div>
-                        <Link to="/login">
+                        <a href="/api/auth/logout">
                             <ExitToApp color="primary" />
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </Container>
