@@ -25,9 +25,7 @@ function App() {
                     <Route path="/search" render={() => <Search />} />
                     <Route
                         path="/exhibit"
-                        component={() => (
-                            <Exhibit  />
-                        )}
+                        component={() => <Exhibit width="800" height="500" />}
                     />
                 </Container>
             </Router>

@@ -4,24 +4,34 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RoughnessMipmapper } from "three/examples/jsm/utils/RoughnessMipmapper.js";
+import Stats from "stats.js";
 import HdrFile from "./textures/royal_esplanade_1k.hdr";
-
+import "./Exhibit.css";
 class Exhibit extends Component {
     componentDidMount() {
+        (function () {
+            var script = document.createElement("script");
+            script.onload = function () {
+                var stats = new Stats();
+                document.body.appendChild(stats.dom);
+                requestAnimationFrame(function loop() {
+                    stats.update();
+                    requestAnimationFrame(loop);
+                });
+            };
+            script.src = "//mrdoob.github.io/stats.js/build/stats.min.js";
+            document.head.appendChild(script);
+        })(); // это временно в конце нужно удалить
         let container, controls, camera;
         let scene, renderer;
+        const { width, height } = this.props;
         init();
 
         function init() {
             container = document.createElement("div");
             document.getElementById("anchor").appendChild(container);
-            camera = new THREE.PerspectiveCamera(
-                45,
-                window.innerWidth / window.innerHeight,
-                0.25,
-                20
-            );
-            camera.position.set(1, 1, 1);
+            camera = new THREE.PerspectiveCamera(45, width / height, 0.25, 400);
+            camera.position.set(1, 1, 80);
 
             scene = new THREE.Scene();
             new RGBELoader()
@@ -43,6 +53,8 @@ class Exhibit extends Component {
 
                     const loaderModel = new GLTFLoader();
                     loaderModel.load("modelCat/scene.gltf", function (gltf) {
+                        // loaderModel.load("model/DamagedHelmet.gltf", function (
+
                         console.log(gltf);
                         gltf.scene.traverse(function (child) {
                             if (child.isMesh) {
@@ -62,7 +74,7 @@ class Exhibit extends Component {
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(window.innerWidth, window.innerHeight); // поправить
+            renderer.setSize(width, height); // поправить
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 0.8;
             renderer.outputEncoding = THREE.sRGBEncoding;
@@ -74,18 +86,17 @@ class Exhibit extends Component {
             controls = new OrbitControls(camera, renderer.domElement);
             controls.addEventListener("change", rendeR); // use if there is no animation loop
             controls.minDistance = 2;
-            controls.maxDistance = 10; // зумирование модели
+            controls.maxDistance = 100; // зумирование модели
             controls.target.set(0, 0, -0.2);
             controls.update();
 
             window.addEventListener("resize", onWindowResize, false);
         }
-
         function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
 
-            renderer.setSize(window.innerWidth / window.innerHeight);
+            renderer.setSize(width / height);
 
             rendeR();
         }
@@ -94,16 +105,7 @@ class Exhibit extends Component {
         }
     }
     render() {
-        return (
-            <div
-                id="anchor"
-                style={{
-                    overflow: "hidden",
-                    width: "100",
-                    height: "100",
-                }}
-            />
-        );
+        return <div id="anchor" />;
     }
 }
 export default Exhibit;
