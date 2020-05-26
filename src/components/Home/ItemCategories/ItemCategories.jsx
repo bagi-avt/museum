@@ -14,7 +14,7 @@ const ItemCategories = ({ id, text, onClickCategory }) => {
     };
     return (
         <div className="item-categories" onClick={onClick}>
-            <div>{text}</div>
+            {text}
         </div>
     );
 };

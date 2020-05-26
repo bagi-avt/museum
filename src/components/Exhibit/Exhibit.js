@@ -21,7 +21,7 @@ class Exhibit extends Component {
                 0.25,
                 20
             );
-            camera.position.set(-1.8, 0.6, 2.7);
+            camera.position.set(1, 1, 1);
 
             scene = new THREE.Scene();
             new RGBELoader()
@@ -30,8 +30,8 @@ class Exhibit extends Component {
                     console.log(texture);
                     const envMap = pmremGenerator.fromEquirectangular(texture)
                         .texture;
-                    //scene.background = new THREE.Color(0xdddddd);
-                    scene.background = envMap;
+                    scene.background = new THREE.Color(0xdddddd);
+                    //scene.background = envMap;
                     scene.environment = envMap;
 
                     texture.dispose();
@@ -40,30 +40,29 @@ class Exhibit extends Component {
                     rendeR();
 
                     let roughnessMipmapper = new RoughnessMipmapper(renderer);
+
                     const loaderModel = new GLTFLoader();
-                    loaderModel.load("./model/DamagedHelmet.gltf", function (
-                        gltf
-                    ) {
+                    loaderModel.load("modelCat/scene.gltf", function (gltf) {
                         console.log(gltf);
-                        // gltf.scene.traverse(function (child) {
-                        //     if (child.isMesh) {
-                        //         roughnessMipmapper.generateMipmaps(
-                        //             child.material
-                        //         );
-                        //     }
-                        // });
+                        gltf.scene.traverse(function (child) {
+                            if (child.isMesh) {
+                                roughnessMipmapper.generateMipmaps(
+                                    child.material
+                                );
+                            }
+                        });
 
-                        // scene.add(gltf.scene);
+                        scene.add(gltf.scene);
 
-                        // roughnessMipmapper.dispose();
+                        roughnessMipmapper.dispose();
 
-                        // rendeR();
+                        rendeR();
                     });
                 });
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setSize(window.innerWidth, window.innerHeight); // поправить
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 0.8;
             renderer.outputEncoding = THREE.sRGBEncoding;
@@ -75,7 +74,7 @@ class Exhibit extends Component {
             controls = new OrbitControls(camera, renderer.domElement);
             controls.addEventListener("change", rendeR); // use if there is no animation loop
             controls.minDistance = 2;
-            controls.maxDistance = 10;
+            controls.maxDistance = 10; // зумирование модели
             controls.target.set(0, 0, -0.2);
             controls.update();
 
@@ -100,9 +99,8 @@ class Exhibit extends Component {
                 id="anchor"
                 style={{
                     overflow: "hidden",
-                    width: "900px",
-                    height: "600px",
-                    margin: "0 auto",
+                    width: "100",
+                    height: "100",
                 }}
             />
         );

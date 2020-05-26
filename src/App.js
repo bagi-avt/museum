@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, BrowserRouter, Router } from "react-router-dom";
-
 import Auth from "./components/Auth/Auth";
 import Exhibit from "./components/Exhibit/Exhibit";
 import Search from "./components/Search/Search";

@@ -5,11 +5,14 @@
 }
 .item-categories {
     float: left;
-    width: 100px;
+    width: 300px;
     margin: 10px 5px;
     height: 100px;
     border-radius: 25px;
     background-color: cornflowerblue;
+    text-align: center;
+
+    font-size: 24px;
 }
 .maps-content {
     border-radius: 25px;
