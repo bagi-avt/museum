@@ -2,9 +2,11 @@ import { connect } from "react-redux";
 import { categoryChangeActionCreater } from "../redux/list-exhibits-reducer";
 import ItemCategories from "../components/Home/ItemCategories/ItemCategories";
 let mapStateToProps = (state, item) => {
+    console.log(item);
     return {
         id: item.item.id,
-        text: item.item.text,
+        nameCategory: item.item.nameCategory,
+        urlPhotoCategory: item.item.urlPhotoCategory,
     };
 };
 let mapDispatchToProps = (dispatch) => {

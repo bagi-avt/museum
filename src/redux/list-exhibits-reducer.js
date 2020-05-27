@@ -12,6 +12,7 @@ let initialState = {
         Ya: { i: 54.94001904149084, j: 55.075628500670526 },
     },
     defaultCenter: {},
+    isFetching: false,
 };
 
 (function test() {
@@ -35,6 +36,7 @@ const listExhibitsReducer = (state = initialState, action) => {
                 ...state,
                 filtredExhibits: state.listExhibits.filter(
                     (item) =>
+                        // (item !== null ? true : false) &&
                         item.geometry.coordinates[0] > action.bounds.Ya.i &&
                         item.geometry.coordinates[0] < action.bounds.Ya.j &&
                         item.geometry.coordinates[1] > action.bounds.Ua.i &&

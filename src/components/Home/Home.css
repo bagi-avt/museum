@@ -9,10 +9,22 @@
     margin: 10px 5px;
     height: 100px;
     border-radius: 25px;
-    background-color: cornflowerblue;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
-
-    font-size: 24px;
+    font-weight: bold;
+    text-shadow: black 0 0 2px;
+}
+.item-categories:hover {
+    opacity: 0.7;
+}
+.item-categories:active {
+    color: rgb(0, 0, 0);
 }
 .maps-content {
     border-radius: 25px;

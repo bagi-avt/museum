@@ -23,10 +23,7 @@ function App() {
                     <Route path="/home" render={() => <HomeContainer />} />
                     <Route path="/profile" render={() => <Profile />} />
                     <Route path="/search" render={() => <Search />} />
-                    <Route
-                        path="/exhibit"
-                        component={() => <Exhibit width="800" height="500" />}
-                    />
+                    <Route path="/exhibit" component={() => <Exhibit />} />
                 </Container>
             </Router>
         </BrowserRouter>
