@@ -13,6 +13,25 @@ let initialState = {
     },
     defaultCenter: {},
     isFetching: false,
+    selectedExhibit: [
+        {
+            type: "exhibit",
+            properties: {
+                exhibit_id: 1,
+                categorie: "1",
+                name: "Каменная скульптура Молящий",
+                short_description:
+                    "Бронзовый спартанский щит, 510 г. до нашей эры. Его вес 45 килограмм. Дааа... Наши армейские марш-броски с полной выкладкой - это была просто шутка...",
+                description:
+                    "Гопло́н (др.-греч. ὅπλον), или аргивский щит — круглый выпуклый щит, являвшийся основной защитой греческих гоплитов, получивших своё наименование от слова — гоплон, что в переводе с греческого означает оружие. Это обозначение получило распространение в ряде стран. Исторически верное название щита, как в античной, так и в сегодняшней Греции — аспис (др.-греч. Άσπις) или аспида (Ασπίδα). Название гоплон ошибочно используется во многих языках, греки же различали гоплон и аспис.",
+                date_of_detection: "Sun Apr 16 2020 00:58:12 GMT+0700",
+            },
+            url: "Каменная_скульптура_Молящий",
+            geometry: {
+                coordinates: [54.97687166230297, 82.8889010252334],
+            },
+        },
+    ],
 };
 
 (function test() {
@@ -65,7 +84,6 @@ const listExhibitsReducer = (state = initialState, action) => {
                 ),
             };
         case types.INPUT_SEARCH_VALUE:
-            console.log(action.text);
             return {
                 ...state,
                 seacrh: action.text,
@@ -78,8 +96,15 @@ const listExhibitsReducer = (state = initialState, action) => {
                             .toLocaleLowerCase()
                             .includes(action.text.toLocaleLowerCase())
                 ),
+                postionCategory: "",
             };
-
+        case types.SELECTED_EXHIBIT:
+            return {
+                ...state,
+                selectedExhibit: state.listExhibits.filter(
+                    (item) => item.properties.exhibit_id === action.text
+                ),
+            };
         default:
             return state;
     }
@@ -93,9 +118,12 @@ export const categoryChangeActionCreater = (text) => ({
     type: types.CHANGE_CATEGORY,
     text,
 });
-export const inputSearchValueActionCreater = (text) => ({
+export const inputSearchValue = (text) => ({
     type: types.INPUT_SEARCH_VALUE,
     text,
 });
-
+export const selectedExhibit = (text) => ({
+    type: types.SELECTED_EXHIBIT,
+    text,
+});
 export default listExhibitsReducer;

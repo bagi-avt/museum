@@ -10,10 +10,10 @@ import "./Header.css";
 import history from "../../history";
 import { Container } from "@material-ui/core";
 
-const Header = ({ city, username, search, searchExhibit }) => {
+const Header = ({ city, username, search, inputSearchValue }) => {
     const onChange = (e) => {
         history.push("/search?q=" + e.target.value);
-        searchExhibit(e.target.value);
+        inputSearchValue(e.target.value);
     };
 
     return (

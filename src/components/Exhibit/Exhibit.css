@@ -1,7 +1,20 @@
 #anchor {
-    margin-top: 25px;
     display: flex;
-    height: 100%;
-    width: 100%;
+    margin-top: 20px;
+    flex-direction: column;
+    height: 500px;
+    width: 800px;
     overflow: "hidden";
+    float: left;
+}
+.block_right {
+    display: block;
+    margin-top: 20px;
+    float: left;
+    margin-left: 20px;
+    width: 400px;
+}
+.block_right h2 {
+    font-size: 20px;
+    text-align: center;
 }

@@ -1,17 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ItemExhibit from "./ItemExhibit";
+import ItemExhibitContainer from "../../containers/ItemExhibitContainer";
 import "./ListExhibit.css";
-
 const ListExhibit = ({ filtredExhibits }) => {
     return (
         <div className="list-exhibits">
             {filtredExhibits.map((item, i) => (
-                <ItemExhibit
-                    key={i}
-                    id={item.properties.exhibit_id}
-                    name={item.properties.name}
-                />
+                <ItemExhibitContainer key={i} item={item} />
             ))}
         </div>
     );

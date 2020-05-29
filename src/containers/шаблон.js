@@ -4,9 +4,6 @@ let mapStateToProps = (state) => {
     //данные из state stora
     return {};
 };
-let mapDispatchToProps = (dispatch) => {
-    //callback которые мы отправляем в тупую компаненту
-    return {};
-};
+let mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)();

@@ -4,28 +4,14 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RoughnessMipmapper } from "three/examples/jsm/utils/RoughnessMipmapper.js";
-import Stats from "stats.js";
 import HdrFile from "./textures/royal_esplanade_1k.hdr";
 
 class Model extends Component {
     componentDidMount() {
-        (function () {
-            var script = document.createElement("script");
-            script.onload = function () {
-                var stats = new Stats();
-                document.body.appendChild(stats.dom);
-
-                requestAnimationFrame(function loop() {
-                    stats.update();
-                    requestAnimationFrame(loop);
-                });
-            };
-            script.src = "//mrdoob.github.io/stats.js/build/stats.min.js";
-            document.head.appendChild(script);
-        })(); // это временно в конце нужно удалить
         let container, controls, camera;
         let scene, renderer;
-        const { width, height } = this.props;
+        const { width, height, url } = this.props;
+
         init();
         function init() {
             container = document.createElement("div");
@@ -43,7 +29,7 @@ class Model extends Component {
                 let roughnessMipmapper = new RoughnessMipmapper(renderer);
 
                 const loaderModel = new GLTFLoader().setPath(
-                    "http://192.168.0.21:5000/static/modelCat/"
+                    "http://192.168.0.21:5000/static/" + url + "/"
                 );
                 loaderModel.load("scene.gltf", function (gltf) {
                     scene.add(gltf.scene);

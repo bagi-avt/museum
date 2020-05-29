@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import { connect } from "react-redux";
-import { inputSearchValueActionCreater } from "../redux/list-exhibits-reducer";
+import { inputSearchValue } from "../redux/list-exhibits-reducer";
 const mapStateToProps = (state) => {
     return {
         city: state.profilePage.city,
@@ -8,12 +8,8 @@ const mapStateToProps = (state) => {
         search: state.exhibitsPage.search,
     };
 };
-const mapDispatchToProps = (dispatch) => {
-    return {
-        searchExhibit: (text) => {
-            dispatch(inputSearchValueActionCreater(text));
-        },
-    };
+const mapDispatchToProps = {
+    inputSearchValue,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
