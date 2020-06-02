@@ -1,5 +1,4 @@
 import * as types from "./types";
-import * as axios from "axios";
 
 let initialState = {
     listCategories: [],
@@ -11,7 +10,7 @@ let initialState = {
         Ua: { i: 82.55007851562499, j: 83.39602578124999 },
         Ya: { i: 54.94001904149084, j: 55.075628500670526 },
     },
-    defaultCenter: {},
+    defaultCenter: { lat: 55.0415, lon: 82.9346 },
     isFetching: false,
     selectedExhibit: [
         {
@@ -34,28 +33,19 @@ let initialState = {
     ],
 };
 
-(function test() {
-    axios({
-        url: "/api/exhibits",
-        headers: { "Content-Type": "application/json" },
-    }).then((response) => {
-        initialState.listCategories = response.data.listCategories;
-        initialState.listExhibits = response.data.listExhibits;
-    });
-    axios.get("http://api.sypexgeo.net/json/").then((response) => {
-        initialState.defaultCenter.lat = response.data.city.lat;
-        initialState.defaultCenter.lon = response.data.city.lon;
-    });
-})();
-
 const listExhibitsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.SET_EXHIBITS:
+            return {
+                ...state,
+                listCategories: action.data.listCategories,
+                listExhibits: action.data.listExhibits,
+            };
         case types.FILTER_EXHIBITS_FOR_MAPS:
             return {
                 ...state,
                 filtredExhibits: state.listExhibits.filter(
                     (item) =>
-                        // (item !== null ? true : false) &&
                         item.geometry.coordinates[0] > action.bounds.Ya.i &&
                         item.geometry.coordinates[0] < action.bounds.Ya.j &&
                         item.geometry.coordinates[1] > action.bounds.Ua.i &&
@@ -102,19 +92,22 @@ const listExhibitsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedExhibit: state.listExhibits.filter(
-                    (item) => item.properties.exhibit_id === action.text
+                    (item) => item.properties.exhibit_id === action.exhibit_id
                 ),
             };
         default:
             return state;
     }
 };
-
-export const filterExhibitActionCreater = (bounds) => ({
+export const setExhibits = (data) => ({
+    type: types.SET_EXHIBITS,
+    data,
+});
+export const filterExhibit = (bounds) => ({
     type: types.FILTER_EXHIBITS_FOR_MAPS,
     bounds,
 });
-export const categoryChangeActionCreater = (text) => ({
+export const categoryChange = (text) => ({
     type: types.CHANGE_CATEGORY,
     text,
 });
@@ -122,8 +115,8 @@ export const inputSearchValue = (text) => ({
     type: types.INPUT_SEARCH_VALUE,
     text,
 });
-export const selectedExhibit = (text) => ({
+export const selectedExhibit = (exhibit_id) => ({
     type: types.SELECTED_EXHIBIT,
-    text,
+    exhibit_id,
 });
 export default listExhibitsReducer;

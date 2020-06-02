@@ -24,7 +24,7 @@ function App() {
                     <Route path="/profile" render={() => <Profile />} />
                     <Route path="/search" render={() => <Search />} />
                     <Route
-                        path="/exhibit"
+                        path="/exhibit/:exhibitId?"
                         component={() => <ExhibitContainer />}
                     />
                 </Container>

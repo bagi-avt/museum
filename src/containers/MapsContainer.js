@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { filterExhibitActionCreater } from "../redux/list-exhibits-reducer";
+import { filterExhibit } from "../redux/exhibits-reducer";
 import Maps from "../components/Home/Maps/Maps";
 
 let mapStateToProps = (state) => {
@@ -8,12 +8,8 @@ let mapStateToProps = (state) => {
         defaultCenter: state.exhibitsPage.defaultCenter,
     };
 };
-let mapDispatchToProps = (dispatch) => {
-    return {
-        filterExhibit: (bounds) => {
-            dispatch(filterExhibitActionCreater(bounds));
-        },
-    };
+let mapDispatchToProps = {
+    filterExhibit,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Maps);

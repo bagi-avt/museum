@@ -14,7 +14,6 @@ const ItemCategories = ({
                 ? "/home"
                 : "/home/" + id
         );
-        console.log(typeof history.location.pathname.slice(6));
         onClickCategory(history.location.pathname.slice(6));
     };
     return (

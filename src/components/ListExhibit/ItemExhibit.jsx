@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ItemExhibit = ({ exhibit_id, name, url, selectedExhibit }) => {
-    const urlLink = "/exhibit/" + exhibit_id;
     const urlPhoto = "http://192.168.0.21:5000/static/" + url + "/scene.png";
     const onCLick = () => {
         selectedExhibit(exhibit_id);
@@ -15,7 +14,7 @@ const ItemExhibit = ({ exhibit_id, name, url, selectedExhibit }) => {
                 backgroundImage: "url(" + urlPhoto + ")",
             }}
         >
-            <Link to={urlLink} onClick={onCLick}>
+            <Link to={"/exhibit/" + exhibit_id} onClick={onCLick}>
                 {name}
             </Link>
         </div>

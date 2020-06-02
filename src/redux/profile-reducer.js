@@ -1,10 +1,9 @@
-import * as axios from "axios";
-
+import * as types from "./types";
 let initialState = {
     username: "Bagi",
     id_user: "12142412",
     city: "Новосибирск",
-    urlAvatar: "",
+    urlPhoto: "",
     bookmarks: [
         {
             id_exhibit: "123",
@@ -40,24 +39,29 @@ let initialState = {
         { id_exhibit: "126", commit: "blablabla" },
     ],
 };
-function test() {
-    axios({
-        url: "/api/profile",
-        headers: { "Content-Type": "application/json" },
-    }).then((response) => {
-        initialState.username = response.data.username;
-        initialState.urlAvatar = response.data.urlPhoto;
-
-    });
-    axios.get("http://api.sypexgeo.net/json/").then((response) => {
-        initialState.city = response.data.city.name_ru;
-    });
-}
-test();
+// function test() {
+//     getProfileInfo.then((data) => {
+//         debugger;
+//         initialState.username = data.;
+//         initialState.urlAvatar = data.urlPhoto;
+//     });
+// }
+// test();
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.SET_PROFILE_INFO:
+            return {
+                ...state,
+                username: action.data.username,
+                urlPhoto: action.data.urlPhoto,
+            };
         default:
             return state;
     }
 };
+
+export const setProfileInfo = (data) => ({
+    type: types.SET_PROFILE_INFO,
+    data,
+});
 export default profileReducer;

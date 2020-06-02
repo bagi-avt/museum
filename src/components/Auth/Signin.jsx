@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 class Signin extends Component {
     render() {
         const onFinish = (values) => {
-            console.log("Received values of form: ", values);
         };
         return (
             <div className="auth__block">
