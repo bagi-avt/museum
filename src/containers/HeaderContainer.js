@@ -3,14 +3,11 @@ import { connect } from "react-redux";
 import { inputSearchValue } from "../redux/exhibits-reducer";
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { getProfileInfo } from "../api/api";
-import { setProfileInfo } from "../redux/profile-reducer";
+import { getProfileInfoTC } from "../redux/profile-reducer";
 
 class HeaderContainer extends Component {
     componentDidMount() {
-        getProfileInfo().then((data) => {
-            this.props.setProfileInfo(data);
-        });
+        this.props.getProfileInfoTC();
     }
     render() {
         return <Header {...this.props} />;
@@ -24,7 +21,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
     inputSearchValue,
-    setProfileInfo,
+    getProfileInfoTC,
 };
 
 export default connect(

@@ -1,4 +1,5 @@
 import * as types from "./types";
+import { getExhibits } from "../api/api";
 
 let initialState = {
     listCategories: [],
@@ -119,4 +120,11 @@ export const selectedExhibit = (exhibit_id) => ({
     type: types.SELECTED_EXHIBIT,
     exhibit_id,
 });
+
+export const getExhibitsTC = () => (dispatch) => {
+    getExhibits().then((data) => {
+        dispatch(setExhibits(data));
+    });
+};
+
 export default listExhibitsReducer;

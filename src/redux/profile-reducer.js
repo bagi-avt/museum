@@ -1,4 +1,6 @@
 import * as types from "./types";
+import { getProfileInfo } from "../api/api";
+
 let initialState = {
     username: "Bagi",
     id_user: "12142412",
@@ -39,14 +41,7 @@ let initialState = {
         { id_exhibit: "126", commit: "blablabla" },
     ],
 };
-// function test() {
-//     getProfileInfo.then((data) => {
-//         debugger;
-//         initialState.username = data.;
-//         initialState.urlAvatar = data.urlPhoto;
-//     });
-// }
-// test();
+
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.SET_PROFILE_INFO:
@@ -64,4 +59,9 @@ export const setProfileInfo = (data) => ({
     type: types.SET_PROFILE_INFO,
     data,
 });
+export const getProfileInfoTC = () => (dispatch) => {
+    getProfileInfo().then((data) => {
+        dispatch(setProfileInfo(data));
+    });
+};
 export default profileReducer;

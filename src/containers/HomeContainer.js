@@ -1,13 +1,11 @@
 import { connect } from "react-redux";
 import Home from "../components/Home/Home";
 import React, { Component } from "react";
-import { setExhibits } from "../redux/exhibits-reducer";
-import { getExhibits } from "../api/api";
+import { getExhibitsTC } from "../redux/exhibits-reducer";
+
 class HomeContainer extends Component {
     componentDidMount() {
-        getExhibits().then((data) => {
-            this.props.setExhibits(data);
-        });
+        this.props.getExhibitsTC();
     }
     render() {
         return <Home {...this.props} />;
@@ -17,5 +15,5 @@ class HomeContainer extends Component {
 let mapStateToProps = (state) => ({
     listCategories: state.exhibitsPage.listCategories,
 });
-let mapDispatchToProps = { setExhibits };
+let mapDispatchToProps = { getExhibitsTC };
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
