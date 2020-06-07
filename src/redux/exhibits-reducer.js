@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { getExhibits } from "../api/api";
+import { getExhibits, getCityName, getCategories } from "../api/api";
 
 let initialState = {
     listCategories: [],
@@ -7,31 +7,11 @@ let initialState = {
     filtredExhibits: [],
     seacrh: "",
     postionCategory: "",
-    bounds: {
-        Ua: { i: 82.55007851562499, j: 83.39602578124999 },
-        Ya: { i: 54.94001904149084, j: 55.075628500670526 },
-    },
-    defaultCenter: { lat: 55.0415, lon: 82.9346 },
+    bounds: null,
+    defaultCenter: { lat: 55.7522, lon: 37.6156 },
     isFetching: false,
-    selectedExhibit: [
-        {
-            type: "exhibit",
-            properties: {
-                exhibit_id: 1,
-                categorie: "1",
-                name: "Каменная скульптура Молящий",
-                short_description:
-                    "Бронзовый спартанский щит, 510 г. до нашей эры. Его вес 45 килограмм. Дааа... Наши армейские марш-броски с полной выкладкой - это была просто шутка...",
-                description:
-                    "Гопло́н (др.-греч. ὅπλον), или аргивский щит — круглый выпуклый щит, являвшийся основной защитой греческих гоплитов, получивших своё наименование от слова — гоплон, что в переводе с греческого означает оружие. Это обозначение получило распространение в ряде стран. Исторически верное название щита, как в античной, так и в сегодняшней Греции — аспис (др.-греч. Άσπις) или аспида (Ασπίδα). Название гоплон ошибочно используется во многих языках, греки же различали гоплон и аспис.",
-                date_of_detection: "Sun Apr 16 2020 00:58:12 GMT+0700",
-            },
-            url: "Каменная_скульптура_Молящий",
-            geometry: {
-                coordinates: [54.97687166230297, 82.8889010252334],
-            },
-        },
-    ],
+    selectedExhibit: null,
+    nameCity: null,
 };
 
 const listExhibitsReducer = (state = initialState, action) => {
@@ -39,8 +19,12 @@ const listExhibitsReducer = (state = initialState, action) => {
         case types.SET_EXHIBITS:
             return {
                 ...state,
+                listExhibits: action.listExhibits,
+            };
+        case types.SET_CATEGORIES:
+            return {
+                ...state,
                 listCategories: action.data.listCategories,
-                listExhibits: action.data.listExhibits,
             };
         case types.FILTER_EXHIBITS_FOR_MAPS:
             return {
@@ -93,15 +77,29 @@ const listExhibitsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedExhibit: state.listExhibits.filter(
-                    (item) => item.properties.exhibit_id === action.exhibit_id
+                    (item) => item._id === action.exhibit_id
                 ),
+            };
+        case types.SET_DEFAULT_POSITION:
+            return {
+                ...state,
+                defaultCenter: action.coordinates,
+            };
+        case types.SET_CITY_NAME:
+            return {
+                ...state,
+                nameCity: action.nameCity,
             };
         default:
             return state;
     }
 };
-export const setExhibits = (data) => ({
+export const setExhibits = (listExhibits) => ({
     type: types.SET_EXHIBITS,
+    listExhibits,
+});
+export const setCategories = (data) => ({
+    type: types.SET_CATEGORIES,
     data,
 });
 export const filterExhibit = (bounds) => ({
@@ -120,11 +118,26 @@ export const selectedExhibit = (exhibit_id) => ({
     type: types.SELECTED_EXHIBIT,
     exhibit_id,
 });
-
+export const setDefaultPosition = (coordinates) => ({
+    type: types.SET_DEFAULT_POSITION,
+    coordinates,
+});
+export const setCityName = (nameCity) => ({
+    type: types.SET_CITY_NAME,
+    nameCity,
+});
 export const getExhibitsTC = () => (dispatch) => {
-    getExhibits().then((data) => {
-        dispatch(setExhibits(data));
+    getExhibits().then((listExhibits) => {
+        dispatch(setExhibits(listExhibits));
+    });
+    getCategories().then((data) => {
+        dispatch(setCategories(data));
     });
 };
 
+export const getCityNameTC = (coordinates) => (dispatch) => {
+    getCityName(coordinates).then((data) => {
+        dispatch(setCityName(data));
+    });
+};
 export default listExhibitsReducer;

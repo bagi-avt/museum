@@ -8,6 +8,14 @@ export const getExhibits = () => {
         return response.data;
     });
 };
+export const getCategories = () => {
+    return axios({
+        url: "/api/categories",
+        headers: { "Content-Type": "application/json" },
+    }).then((response) => {
+        return response.data;
+    });
+};
 export const getProfileInfo = () => {
     return axios({
         url: "/api/profile",
@@ -16,6 +24,15 @@ export const getProfileInfo = () => {
         return response.data;
     });
 };
-// axios.get("http://api.sypexgeo.net/json/").then((response) => {
-//     //initialState.city = response.data.city.name_ru;
-// });
+
+export const getCityName = (coordinates) => {
+    return axios
+        .get(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates.lat},${coordinates.lon}
+            &key=AIzaSyDhjVz1DiOqPw4bkdi68v4_WZWl6vOt45o`
+        )
+        .then((response) => {
+            return response.data;
+        });
+};
+//export const testPost=

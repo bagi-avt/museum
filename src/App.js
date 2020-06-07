@@ -9,7 +9,7 @@ import history from "./history";
 import { Container } from "@material-ui/core";
 import ExhibitContainer from "./containers/ExhibitContainer";
 
-function App() {
+const App = (props) => {
     return (
         <BrowserRouter>
             <Router history={history}>
@@ -18,7 +18,8 @@ function App() {
                     path={["/", "/login", "/register"]}
                     component={Auth}
                 />
-                <HeaderContainer />
+                {history.location.pathname !== "/login" &&
+                    history.location.pathname !== "/" && <HeaderContainer />}
                 <Container>
                     <Route path="/home" render={() => <HomeContainer />} />
                     <Route path="/profile" render={() => <Profile />} />
@@ -31,6 +32,6 @@ function App() {
             </Router>
         </BrowserRouter>
     );
-}
+};
 
 export default App;

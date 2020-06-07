@@ -21,7 +21,7 @@ const ItemExhibit = ({ exhibit_id, name, url, selectedExhibit }) => {
     );
 };
 ItemExhibit.propTypes = {
-    exhibit_id: PropTypes.number,
+    exhibit_id: PropTypes.string,
     name: PropTypes.string,
     url: PropTypes.string,
 };

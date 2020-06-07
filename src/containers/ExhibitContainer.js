@@ -9,6 +9,7 @@ class ExhibitContainer extends Component {
         console.log(this.props.match.params.exhibitId); //для запроса на сервер уникальное значение выбранного экспоната
     }
     render() {
+        console.log(this.props);
         return <Exhibit {...this.props} />;
     }
 }

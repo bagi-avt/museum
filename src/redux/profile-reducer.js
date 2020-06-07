@@ -6,6 +6,7 @@ let initialState = {
     id_user: "12142412",
     city: "Новосибирск",
     urlPhoto: "",
+    isAuth: false,
     bookmarks: [
         {
             id_exhibit: "123",
@@ -49,6 +50,7 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 username: action.data.username,
                 urlPhoto: action.data.urlPhoto,
+                isAuth: true,
             };
         default:
             return state;
@@ -59,6 +61,7 @@ export const setProfileInfo = (data) => ({
     type: types.SET_PROFILE_INFO,
     data,
 });
+
 export const getProfileInfoTC = () => (dispatch) => {
     getProfileInfo().then((data) => {
         dispatch(setProfileInfo(data));

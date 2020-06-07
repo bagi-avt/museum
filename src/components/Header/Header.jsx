@@ -15,7 +15,7 @@ const Header = ({ city, username, search, inputSearchValue }) => {
         history.push("/search?q=" + e.target.value);
         inputSearchValue(e.target.value);
     };
-
+    
     return (
         <div className="header-content">
             <Container>

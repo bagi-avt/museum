@@ -33,8 +33,8 @@ const WrappedMap = withScriptjs(
                     <Marker
                         key={i}
                         position={{
-                            lat: item.geometry.coordinates[0],
-                            lng: item.geometry.coordinates[1],
+                            lat: +item.geometry.coordinates[0],
+                            lng: +item.geometry.coordinates[1],
                         }}
                         onClick={() => {
                             setSelectedMarker(item);
@@ -47,8 +47,8 @@ const WrappedMap = withScriptjs(
                             setSelectedMarker(null);
                         }}
                         position={{
-                            lat: selectedMarker.geometry.coordinates[0],
-                            lng: selectedMarker.geometry.coordinates[1],
+                            lat: +selectedMarker.geometry.coordinates[0],
+                            lng: +selectedMarker.geometry.coordinates[1],
                         }}
                     >
                         <div>
